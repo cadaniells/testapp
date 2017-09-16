@@ -1,0 +1,33 @@
+<div [formGroup]="form">
+  <div class="row">
+    <div class="col-sm-2 form-group">
+      <label class="pull-right" [attr.for]="question.key">{{question.label}}</label>
+    </div>
+    <div class="col-sm-6 form-group">
+      <div [ngSwitch]="question.controlType">
+
+        <input *ngSwitchCase="'textbox'" [formControlName]="question.key"
+            [id]="question.key" [type]="question.type" class="form-control" >
+
+        <select [id]="question.key" *ngSwitchCase="'dropdown'" 
+            [formControlName]="question.key" class="form-control">
+          <option *ngFor="let opt of question.options" [value]="opt.value">{{opt.value}}</option>
+        </select>
+
+        <input *ngSwitchCase="'date'" [formControlName]="question.key"
+          [id]="question.key" [type]="question.type" class="form-control">
+
+        <div *ngSwitchCase="'radio'" >
+          <div *ngFor="let opt of question.options">
+            <input [id]="question.key" 
+              type="radio" class="form-control" name="radioOptions"
+              [value]="opt.key" > {{opt.value}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4 form-group"> 
+      <div class="alert alert-danger errorMessage" *ngIf="inValid">{{question.label}} is required</div>
+    </div>
+  </div>
+</div>

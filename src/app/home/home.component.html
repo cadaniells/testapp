@@ -1,0 +1,84 @@
+<div class="main-content">
+    <div class="container-fluid">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">{{graphExpenses}}</h4>
+                        <p class="category">Select the relevant filters</p>
+                    </div>
+                    <hr/>
+                    <div class="content">
+                            <form>
+                              <div class="row">
+                                <div class="col-md-6">
+                                <label>Property</label>
+                                <select class="form-control" [(ngModel)]="selectedProperty" name="selectedProperty">
+                                    <option *ngFor="let prop of properties" [ngValue]="prop.value">{{prop.value}}</option>
+                                </select> 
+                                </div>
+                              </div>
+                                <div class="row">
+                                     <div class="col-md-6">
+                                            <label>Start Date</label>
+                                            <input type="date" class="form-control" [(ngModel)]="startDate" name="startDate">
+                                     </div>
+                                     <div class="col-md-6">
+                                            <label>End Date</label>
+                                            <input type="date" class="form-control" [(ngModel)]="endDate" name="endDate">
+                                     </div>
+                                </div>
+                                <div class="row">
+                                    <hr/>
+                                </div>
+                                <div class="row">
+                                     <div class="col-md-6">
+                                         <label *ngIf="noDates" class="pull-left">Note: No date range selected in graph results below.</label>
+                                     </div>
+                                     <div class="col-md-6">
+                                        <a class="btn btn-primary btn-sm pull-right" role="button" (click)=refreshData()>Refresh Results</a>
+                                     </div>
+                                </div>
+                            </form>
+                    </div>
+                </div>    
+        <div class="row">
+            <div class="col-md-12">
+                <ngx-charts-bar-vertical
+                [view]="view"
+                [scheme]="colorScheme"
+                [results]="single"
+                [gradient]="gradient"
+                [xAxis]="showXAxis"
+                [yAxis]="showYAxis"
+                [legend]="showLegend"
+                [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel"
+                [xAxisLabel]="xAxisLabel"
+                [yAxisLabel]="yAxisLabel"
+                (select)="onSelect($event)">
+                </ngx-charts-bar-vertical>                
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Detail View</h4>
+                        <p class="category">Expenses</p>
+                    </div>
+                    <div class="content">
+                        <ng2-smart-table 
+                            [settings]="settings" 
+                            [source]="data"
+                            (deleteConfirm)="onDeleteConfirm($event)"
+                            (editConfirm)="onSaveConfirm($event)"
+                            (createConfirm)="onCreateConfirm($event)">
+                        </ng2-smart-table>
+                        <hr/>       
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

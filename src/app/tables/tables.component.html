@@ -1,0 +1,31 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Property Expenses View</h4>
+                        <hr/>
+                    </div>    
+                    <div class="content">
+                        <div class="jumbotron">
+                            <p>Use the column filters below view specific data</p>
+                            <p class="lead">
+                                <a class="btn btn-primary btn-sm" role="button" (click)=onClickRefreshData()>Refresh Data</a>
+                            </p>
+                        </div>
+                        <ng2-smart-table 
+                            [settings]="settings" 
+                            [source]="data"
+                            (deleteConfirm)="onDeleteConfirm($event)"
+                            (editConfirm)="onSaveConfirm($event)"
+                            (createConfirm)="onCreateConfirm($event)">
+                        </ng2-smart-table>
+                        <hr/>                        
+                    </div>    
+                </div>    
+            </div>    
+        </div>    
+    </div>    
+</div>    
+

@@ -1,0 +1,29 @@
+<div>
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+
+    <div *ngFor="let cat of categories" class="form-row">
+
+      <div class="panel-group panel panel-default">
+        <h4 class="panel-title"> <a data-toggle="collapse" [attr.href]="'#' + cat">{{cat}}</a></h4>
+      </div>
+
+      <div [id]="cat" class="panel-collapse collapse">
+        <div *ngFor="let question of questions" class="form-row">
+          <div *ngIf="(question.category == cat)">
+            <df-question [question]="question" [form]="form"></df-question>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="form-row">
+      <button (click)="sendNotification()" class="btn btn-primary" type="submit" [disabled]="!form.valid">Save</button>
+    </div>
+    
+  </form>
+
+  <div *ngIf="payLoad" class="form-row" id="formPayLoad">
+    <strong>Saved the following values</strong><br>{{payLoad}}
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="main-content" >
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Property Summary</h4>
+                    </div>
+
+                    <div class="content">
+                        <form>
+
+                            <div class="row">
+                                <div class="col-sm-2 form-group">
+                                    <label>Select Property</label>
+                                </div>
+                                <div class="col-sm-8 form-group">
+                                    <select [(ngModel)]="propertySelected" type="dropdown" class="form-control" (ngModelChange)="onPropertyChange($event)" name="currentProperty">
+                                        <option *ngFor="let prop of allProperties" [ngValue]="prop.value">{{prop.value}}</option>
+                                    </select>                            
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div *ngFor="let info of summary">
+                                    <div class="col-sm-2 form-group">
+                                        <label>{{info.i}}</label>
+                                    </div>
+
+                                    <div class="col-sm-10 form-group">
+                                        <input type="text" name="info.i" [value]="info.val" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class ="container-fluid card">
+    <h4 class="title">BILLS</h4>
+</div>
